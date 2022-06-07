@@ -42,8 +42,3 @@ class TestCHK(unittest.TestCase):
 
 
 
-
-
-
-
-
