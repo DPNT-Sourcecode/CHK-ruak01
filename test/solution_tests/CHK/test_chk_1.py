@@ -120,6 +120,29 @@ class TestCHK(unittest.TestCase):
         #Z>TSY>X
         assert checkout_solution.checkout("TSY")==45
 
+    
+    """Group offer but expensive ones are grouped first
+    """
+    def test_prio_group_offer(self):
+        #Z>TSY>X
+        assert checkout_solution.checkout("ZZTX")==62
+
+    
+    """Group offer but not enough
+    """
+    def test_fake_group_offer(self):
+        #Z>TSY>X
+        assert checkout_solution.checkout("TSA")==90
+
+    """Multiple groups
+    """
+    def test_multiple_group_offer(self):
+        #Z>TSY>X
+        assert checkout_solution.checkout("TSSZTX")==90
+
+    
+
 
         
+
 
