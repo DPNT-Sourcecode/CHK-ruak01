@@ -183,7 +183,7 @@ def applySpecialOfferK(item_amounts):
         offer_amount = (item_amounts["K"] - item_amounts["K"] % 2) / 2
         # Remove this many items from the item amounts, and add
         # sum to basket:
-        addition += offer_amount * 150
+        addition += offer_amount * 120
         item_amounts["K"] = item_amounts["K"] - offer_amount * 2
     return addition
 
@@ -293,7 +293,7 @@ def checkout(skus):
 #Have to trust our old tests are good enough for now.
 
 
-    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10,"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,"M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
+    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10,"G":20,"H":10,"I":35,"J":60,"K":70,"L":90,"M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":20,"T":20,"U":40,"V":50,"W":20,"X":17,"Y":20,"Z":21}
 
     # We do all non-special offer tests first.
     # Testing works now. Now to start with the first cases: iterate all the items, and
@@ -372,6 +372,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
