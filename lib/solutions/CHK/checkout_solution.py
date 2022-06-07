@@ -85,6 +85,8 @@ def checkout(skus):
     # Assume that each basket is a string of characters, each
     # an individual item: for instance, "AABBCC"
 
+
+    sanityCheck(skus)
     # Formulate a hashmap for single items, and another for special offers
     single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
 
@@ -125,6 +127,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
