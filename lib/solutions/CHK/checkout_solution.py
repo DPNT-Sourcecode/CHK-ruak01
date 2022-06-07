@@ -32,6 +32,8 @@ def checkout(skus):
     #In order to utilize the  special offers, we collect amounts of items to another map
     item_amounts={}
 
+    if not skus:
+        return -1
     for item in skus:
         #Not in the basket
         if not item in single_items:
@@ -93,5 +95,6 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
