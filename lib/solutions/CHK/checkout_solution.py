@@ -15,7 +15,9 @@ def checkout(skus):
 
     #Formulate a hashmap for single items, and another for special offers
     single_items={"A":50,"B":30,"C":20,"D":15}
-
+    #empty basket
+    if not skus:
+        return 0
     #First, check if skus only includes uppercase letters
     if not skus.isupper():
         return -1
@@ -32,8 +34,6 @@ def checkout(skus):
     #In order to utilize the  special offers, we collect amounts of items to another map
     item_amounts={}
 
-    if not skus:
-        return 0
     for item in skus:
         #Not in the basket
         if not item in single_items:
@@ -95,6 +95,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
