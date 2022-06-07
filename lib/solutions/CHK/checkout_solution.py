@@ -51,6 +51,118 @@ def applySpecialOfferA(item_amounts):
         addition += offer_amount * 130
         item_amounts["A"] = item_amounts["A"] - offer_amount * 3
     return addition
+def applySpecialOfferH(item_amounts):
+    addition = 0
+    if item_amounts["H"] >= 10:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["H"] - item_amounts["H"] % 10) / 10
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 80
+        item_amounts["H"] = item_amounts["H"] - offer_amount * 10
+
+    if item_amounts["H"] >= 5:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["H"] - item_amounts["H"] % 5) / 5
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 45
+        item_amounts["H"] = item_amounts["H"] - offer_amount * 5
+    return addition
+
+
+
+
+def applySpecialOfferV(item_amounts):
+    addition = 0
+    if item_amounts["V"] >= 3:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["V"] - item_amounts["V"] % 3) / 3
+        # Remove this many items from the item amounts, and add
+        # sum to basket
+        addition += offer_amount * 130
+        item_amounts["V"] = item_amounts["V"] - offer_amount * 3
+
+    if item_amounts["V"] >= 2:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["V"] - item_amounts["V"] % 2) / 2
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 90
+        item_amounts["V"] = item_amounts["V"] - offer_amount * 2
+    return addition
+
+#Simple multi-item offer
+def applySpecialOfferB(item_amounts):
+    addition = 0
+    if item_amounts["B"] >= 2:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["B"] - item_amounts["B"] % 2) / 2
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 45
+        item_amounts["B"] = item_amounts["B"] - offer_amount * 2
+    return addition
+
+def applySpecialOfferK(item_amounts):
+    addition = 0
+    if item_amounts["K"] >= 2:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["K"] - item_amounts["K"] % 2) / 2
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 150
+        item_amounts["K"] = item_amounts["K"] - offer_amount * 2
+    return addition
+
+def applySpecialOfferP(item_amounts):
+    addition = 0
+    if item_amounts["P"] >= 5:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["P"] - item_amounts["P"] % 5) / 5
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 200
+        item_amounts["P"] = item_amounts["P"] - offer_amount * 5
+    return addition
+
+
+
+#Simple multi-item offer
+def applySpecialOfferB(item_amounts):
+    addition = 0
+    if item_amounts["B"] >= 2:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["B"] - item_amounts["B"] % 2) / 2
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 45
+        item_amounts["B"] = item_amounts["B"] - offer_amount * 2
+    return addition
+
+def applySpecialOfferK(item_amounts):
+    addition = 0
+    if item_amounts["K"] >= 2:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["K"] - item_amounts["K"] % 2) / 2
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 150
+        item_amounts["K"] = item_amounts["K"] - offer_amount * 2
+    return addition
+
+def applySpecialOfferP(item_amounts):
+    addition = 0
+    if item_amounts["P"] >= 5:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["P"] - item_amounts["P"] % 5) / 5
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 200
+        item_amounts["P"] = item_amounts["P"] - offer_amount * 5
+    return addition
+
+
 
 #Simple multi-item offer
 def applySpecialOfferB(item_amounts):
@@ -193,11 +305,6 @@ def checkout(skus):
 
 
     """
-    | H    | 10    | 5H for 45, 10H for 80  |
-    | K    | 80    | 2K for 150             |
-    | P    | 50    | 5P for 200             |
-    | Q    | 30    | 3Q for 80              |
-    | V    | 50    | 2V for 90, 3V for 130  |
     """
 
     item_amounts = collateItemAmounts(skus, single_items)
@@ -230,6 +337,14 @@ def checkout(skus):
     # Multiprice
     if "A" in item_amounts:
         basket += applySpecialOfferA(item_amounts)
+    if "H" in item_amounts:
+        basket += applySpecialOfferH(item_amounts)
+    if "V" in item_amounts:
+        basket += applySpecialOfferV(item_amounts)
+
+    # Simple bulk
+    if "B" in item_amounts:
+        basket += applySpecialOfferB(item_amounts)
     if "K" in item_amounts:
         basket += applySpecialOfferK(item_amounts)
     if "P" in item_amounts:
@@ -238,9 +353,6 @@ def checkout(skus):
         basket += applySpecialOfferQ(item_amounts)
 
 
-    # Simple bulk
-    if "B" in item_amounts:
-        basket += applySpecialOfferB(item_amounts)
 
     # rest of the items:
     for key in item_amounts.keys():
@@ -260,3 +372,4 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
