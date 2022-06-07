@@ -49,7 +49,7 @@ from runner.user_input_action import get_user_input
  
     You are encouraged to change this project as you please:
          * You can use your preferred libraries.
-         * You can use your own test framework.
+         * You can use your own test framework.!
          * You can change the file structure.
          * Anything really, provided that this file stays runnable.
  
@@ -71,3 +71,4 @@ ChallengeSession\
     .with_config(Utils.get_config())\
     .with_action_provider(lambda: get_user_input(sys.argv[1:]))\
     .start()
+
