@@ -268,11 +268,11 @@ def applySpecialOfferF(item_amounts):
 def applySpecialOfferU(item_amounts):
     offer_amount=0
     #For each triplet of F's, remove three and ad 2Xfprice to basket
-    if item_amounts["U"] >= 3:
+    if item_amounts["U"] >= 4:
         # How many times does the special offer fit?
-        offer_amount = (item_amounts["U"] - item_amounts["U"] % 3) / 3
-        item_amounts["U"]=item_amounts["U"]-3*offer_amount
-    return 80*offer_amount
+        offer_amount = (item_amounts["U"] - item_amounts["U"] % 4) / 4
+        item_amounts["U"]=item_amounts["U"]-4*offer_amount
+    return 120*offer_amount
 
 def checkout(skus):
     # First, we sum all possible amounts of items. Then, if
@@ -372,5 +372,6 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
