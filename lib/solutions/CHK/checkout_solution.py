@@ -78,16 +78,13 @@ def applySpecialOfferE(item_amounts):
     return 0
 
 def applySpecialOfferF(item_amounts):
+    offer_amount=0
     #For each triplet of F's, remove three and ad 2Xfprice to basket
     if item_amounts["F"] >= 3:
         # How many times does the special offer fit?
-        offer_amount = (item_amounts["E"] - item_amounts["E"] % 2) / 2
-        if "B" in item_amounts:
-            item_amounts["B"] = item_amounts["B"] - offer_amount
-    if "B" in item_amounts:
-        if item_amounts["B"] < 0:
-            item_amounts["B"] = 0
-    return 0
+        offer_amount = (item_amounts["F"] - item_amounts["F"] % 3) / 3
+        item_amounts["F"]=item_amounts["F"]-3*offer_amount
+    return 20*offer_amount
 
 
 def checkout(skus):
@@ -146,3 +143,4 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
