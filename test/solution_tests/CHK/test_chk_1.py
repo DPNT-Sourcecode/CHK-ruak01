@@ -85,12 +85,29 @@ class TestCHK(unittest.TestCase):
 
     """Special offer F: only one, nnnnnno discount
     """
-    def test_free_item_in_basket_other_offers(self):
+    def test_f_no_discount(self):
         assert checkout_solution.checkout("F")==10
 
 
     """Special offer F: three, so discount
     """
-    def test_free_item_in_basket_other_offers(self):
+    def test_f_discount(self):
         assert checkout_solution.checkout("FFF")==20
+
+        
+    """Special offer F: four, so discount plus one
+    """
+    def test_f_discount_and_more(self):
+        assert checkout_solution.checkout("FFFF")==30
+
+
+    """Special offer F: Four, and a lot of other stuff
+    """
+    def test_f_discount_and_other_offers(self):
+        assert checkout_solution.checkout("FFFEEBABB")==195
+
+        
+
+        
+
 
