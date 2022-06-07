@@ -20,10 +20,21 @@ def checkout(skus):
     if not skus.isupper():
         return -1
 
-    #We do all non-special offer tests first:
+
+    #We do all non-special offer tests first.
+    #Testing works now. Now to start with the first cases: iterate all the items, and
+    #Add their prices into the basket.
+    #If we find an item that is not in basket, return -1
+
     basket=0
     for item in skus:
+        #Not in the basket
+        if not item in single_items:
+            return -1
         print(item)
+        basket+=single_items[item]
+
+    return basket
 
 
     
@@ -38,4 +49,5 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
