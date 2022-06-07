@@ -1,13 +1,14 @@
 from tabnanny import check
 from requests import check_compatibility
 
+import unittest
 import sys
 sys.path.append('../../../lib/solutions/CHK')
 
 #from solutions.solutions_CHK import checkout_solution
 import checkout_solution
 
-class TestCHK():
+class TestCHK(unittest.TestCase):
     """Test single item, no special offers
     """
     def test_chk1_single(self):
@@ -38,6 +39,7 @@ class TestCHK():
     """
     def test_chk1_special_mixed(self):
         assert checkout_solution.checkout("AAABBABCD")==290
+
 
 
 

@@ -17,7 +17,7 @@ def checkout(skus):
     single_items={"A":50,"B":30,"C":20,"D":15}
 
     #First, check if skus only includes uppercase letters
-    if not all(skus.isupper()):
+    if not skus.isupper():
         return -1
 
     #We do all non-special offer tests first:
@@ -38,3 +38,4 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
