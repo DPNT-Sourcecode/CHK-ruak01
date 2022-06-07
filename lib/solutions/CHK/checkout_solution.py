@@ -83,15 +83,29 @@ def applySpecialOfferE(item_amounts):
 def applySpecialOfferN(item_amounts):
     # How this will work is that
     # For each pair of E's, we can remove one B, as long as there are B's to remove
-    if item_amounts["E"] >= 2:
+    if item_amounts["N"] >= 3:
         # How many times does the special offer fit?
-        offer_amount = (item_amounts["E"] - item_amounts["E"] % 2) / 2
-        if "B" in item_amounts:
-            item_amounts["B"] = item_amounts["B"] - offer_amount
-    if "B" in item_amounts:
-        if item_amounts["B"] < 0:
-            item_amounts["B"] = 0
+        offer_amount = (item_amounts["N"] - item_amounts["N"] % 3) / 3
+        if "M" in item_amounts:
+            item_amounts["M"] = item_amounts["M"] - offer_amount
+    if "M" in item_amounts:
+        if item_amounts["M"] < 0:
+            item_amounts["M"] = 0
     return 0
+
+#Offer giving free other items. These go first, in order.
+def applySpecialOfferR(item_amounts):
+    if item_amounts["R"] >= 3:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["R"] - item_amounts["R"] % 3) / 3
+        if "Q" in item_amounts:
+            item_amounts["Q"] = item_amounts["Q"] - offer_amount
+    if "Q" in item_amounts:
+        if item_amounts["Q"] < 0:
+            item_amounts["Q"] = 0
+    return 0
+
+
 
 #Offer giving free items if we already have enough
 def applySpecialOfferF(item_amounts):
@@ -103,6 +117,16 @@ def applySpecialOfferF(item_amounts):
         item_amounts["F"]=item_amounts["F"]-3*offer_amount
     return 20*offer_amount
 
+
+#Offer giving free items if we already have enough
+def applySpecialOfferU(item_amounts):
+    offer_amount=0
+    #For each triplet of F's, remove three and ad 2Xfprice to basket
+    if item_amounts["U"] >= 3:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["U"] - item_amounts["U"] % 3) / 3
+        item_amounts["U"]=item_amounts["U"]-3*offer_amount
+    return 80*offer_amount
 
 def checkout(skus):
     # First, we sum all possible amounts of items. Then, if
@@ -137,11 +161,8 @@ def checkout(skus):
     """
     | H    | 10    | 5H for 45, 10H for 80  |
     | K    | 80    | 2K for 150             |
-    | N    | 40    | 3N get one M free      |
     | P    | 50    | 5P for 200             |
     | Q    | 30    | 3Q for 80              |
-    | R    | 50    | 3R get one Q free      |
-    | U    | 40    | 3U get one U free      |
     | V    | 50    | 2V for 90, 3V for 130  |
     """
 
@@ -153,23 +174,30 @@ def checkout(skus):
     #E gives free others,
     #F gives free if we buy bulk
     #H is archetype A, K is archetype B,
-    # N is archetype E, P is archetype B,
-    # Q is archetype B, R is archetype E,
+    # P is archetype B,
+    # Q is archetype B,
     # U is archetype F, V is archetype A
 
     if "N" in item_amounts:
         basket += applySpecialOfferN(item_amounts)
-
+    if "R" in item_amounts:
+        basket += applySpecialOfferN(item_amounts)
     if "E" in item_amounts:
         basket += applySpecialOfferE(item_amounts)
 
+
+
     if "F" in item_amounts:
         basket += applySpecialOfferF(item_amounts)
+    if "U" in item_amounts:
+        basket += applySpecialOfferU(item_amounts)
 
-    # If the amount of items is geq 3, recude
+    # Multiprice
     if "A" in item_amounts:
         basket += applySpecialOfferA(item_amounts)
-    # Same with the other one:
+
+
+    # Simple bulk
     if "B" in item_amounts:
         basket += applySpecialOfferB(item_amounts)
 
@@ -191,6 +219,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
