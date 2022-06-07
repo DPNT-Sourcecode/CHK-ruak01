@@ -46,4 +46,22 @@ class TestCHK(unittest.TestCase):
     def test_chk1_special_mixed(self):
         assert checkout_solution.checkout("AAABBABCD") == 290
 
+    """Free item without it being in the basket
+    """
+    def test_free_item_only_not_in_basket(self):
+        assert checkout_solution.checkout("EE")==80
+
+
+    """Free item with it it being in the basket
+    """
+    def test_free_item_only_not_in_basket(self):
+        assert checkout_solution.checkout("EEB")==80
+
+
+
+    """Free item with it being in the basket, with other items
+    """
+    def test_free_item_only_not_in_basket(self):
+        assert checkout_solution.checkout("EEBA")==90
+
 

@@ -65,14 +65,14 @@ def applySpecialOfferB(item_amounts):
 def applySpecialOfferE(item_amounts):
     # How this will work is that
     # For each pair of E's, we can remove one B, as long as there are B's to remove
-    if item_amounts["B"] >= 2:
+    if item_amounts["E"] >= 2:
         # How many times does the special offer fit?
-        offer_amount = (item_amounts["B"] - item_amounts["B"] % 2) / 2
-        # Remove this many items from the item amounts, and add
-        # sum to basket:
-        addition += offer_amount * 45
-        item_amounts["B"] = item_amounts["B"] - offer_amount * 2
-    return addition
+        offer_amount = (item_amounts["E"] - item_amounts["E"] % 2) / 2
+        item_amounts["B"] = item_amounts["B"] - offer_amount
+    
+    if item_amounts["B"]<0:
+        item_amounts["B"]=0
+    return 0
 
 
 def checkout(skus):
