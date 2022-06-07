@@ -10,7 +10,17 @@ sys.path.append("../../../lib/solutions/CHK")
 import checkout_solution
 
 
+
 class TestCHK(unittest.TestCase):
+
+
+
+    """erroring case
+    """
+    def test_free_item_only_not_in_basket(self):
+        assert checkout_solution.checkout("a")==40
+
+
     """Test single item, no special offers"""
 
     def test_chk1_single(self):
@@ -70,5 +80,6 @@ class TestCHK(unittest.TestCase):
     """
     def test_free_item_in_basket_other_offers(self):
         assert checkout_solution.checkout("EEBABB")==175
+
 
 

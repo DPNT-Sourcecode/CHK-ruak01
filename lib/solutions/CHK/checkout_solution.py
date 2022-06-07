@@ -12,6 +12,8 @@ def sanityCheck(skus):
     # malformed token
     if not skus.isupper():
         return -1
+    else:
+        return 1
 
 
 def collateItemAmounts(skus, single_items):
@@ -86,7 +88,8 @@ def checkout(skus):
     # an individual item: for instance, "AABBCC"
 
 
-    sanityCheck(skus)
+    if not sanityCheck(skus)==1:
+        return sanityCheck(skus)
     # Formulate a hashmap for single items, and another for special offers
     single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
 
@@ -127,6 +130,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
