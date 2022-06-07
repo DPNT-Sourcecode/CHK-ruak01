@@ -277,6 +277,9 @@ def applySpecialOfferU(item_amounts):
 def groupOffer(item_amounts):
     #We want to offer the most expensive items for free
     #Z>TSY>X
+    #First, use all Z's, then use all T's/S's/Y's, doesnt matter. Then use all X's
+
+
 
 def checkout(skus):
     # First, we sum all possible amounts of items. Then, if
@@ -379,6 +382,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
