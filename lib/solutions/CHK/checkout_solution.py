@@ -78,6 +78,21 @@ def applySpecialOfferE(item_amounts):
             item_amounts["B"] = 0
     return 0
 
+
+#Offer giving free other items. These go first, in order.
+def applySpecialOfferN(item_amounts):
+    # How this will work is that
+    # For each pair of E's, we can remove one B, as long as there are B's to remove
+    if item_amounts["E"] >= 2:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["E"] - item_amounts["E"] % 2) / 2
+        if "B" in item_amounts:
+            item_amounts["B"] = item_amounts["B"] - offer_amount
+    if "B" in item_amounts:
+        if item_amounts["B"] < 0:
+            item_amounts["B"] = 0
+    return 0
+
 #Offer giving free items if we already have enough
 def applySpecialOfferF(item_amounts):
     offer_amount=0
@@ -133,6 +148,18 @@ def checkout(skus):
     item_amounts = collateItemAmounts(skus, single_items)
     basket = 0
     # First, we try to fit the special offers in:
+
+    #A one with multiple prices, B simple bulk,
+    #E gives free others,
+    #F gives free if we buy bulk
+    #H is archetype A, K is archetype B,
+    # N is archetype E, P is archetype B,
+    # Q is archetype B, R is archetype E,
+    # U is archetype F, V is archetype A
+
+    if "N" in item_amounts:
+        basket += applySpecialOfferN(item_amounts)
+
     if "E" in item_amounts:
         basket += applySpecialOfferE(item_amounts)
 
@@ -164,6 +191,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
