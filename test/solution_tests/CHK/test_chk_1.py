@@ -1,6 +1,10 @@
-from solutions.SUM import sum_solution
+from solutions.CHK import checkout_solution
 
 
-class TestSum():
-    def test_sum(self):
-        assert sum_solution.compute(1, 2) == 3
+class TestCHK():
+    #Test single item for CHK1, no bulk buys
+
+    
+    def test_chk1_single(self):
+        assert checkout_solution.checkout("AA") == 100
+
