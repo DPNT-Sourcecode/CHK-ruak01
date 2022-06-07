@@ -32,6 +32,7 @@ def collateItemAmounts(skus, single_items):
     return item_amounts
 
 
+#Offer for one item with multiple prices
 def applySpecialOfferA(item_amounts):
     addition = 0
     if item_amounts["A"] >= 5:
@@ -51,7 +52,7 @@ def applySpecialOfferA(item_amounts):
         item_amounts["A"] = item_amounts["A"] - offer_amount * 3
     return addition
 
-
+#Simple multi-item offer
 def applySpecialOfferB(item_amounts):
     addition = 0
     if item_amounts["B"] >= 2:
@@ -100,7 +101,29 @@ def checkout(skus):
     if not sanityCheck(skus)==1:
         return sanityCheck(skus)
     # Formulate a hashmap for single items, and another for special offers
-    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10}
+
+
+#Writing tests fof all these cases is going to be difficult
+#Have to trust our old tests are good enough for now.
+"""
+| H    | 10    | 5H for 45, 10H for 80  |
+| K    | 80    | 2K for 150             |
+| N    | 40    | 3N get one M free      |
+| P    | 50    | 5P for 200             |
+| Q    | 30    | 3Q for 80              |
+| R    | 50    | 3R get one Q free      |
+| U    | 40    | 3U get one U free      |
+| V    | 50    | 2V for 90, 3V for 130  |
+"""
+
+
+    
+
+
+
+    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10,
+"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,"M":15,"N":40,
+    "O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
 
     # We do all non-special offer tests first.
     # Testing works now. Now to start with the first cases: iterate all the items, and
@@ -143,4 +166,5 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
