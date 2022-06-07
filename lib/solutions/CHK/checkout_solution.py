@@ -30,6 +30,29 @@ def collateItemAmounts(skus, single_items):
             item_amounts[item]=1
     return item_amounts
 
+def applySpecialOfferA(item_amounts):
+    addition=0
+    if item_amounts["A"]>=3:
+        #How many times does the special offer fit?
+        offer_amount=(item_amounts["A"]-item_amounts["A"]%3)/3
+        #Remove this many items from the item amounts, and add
+        #sum to basket:
+        addition+=offer_amount*130
+        item_amounts["A"]=item_amounts["A"]-offer_amount*3
+    return addition
+
+def applySpecialOfferB(item_amounts):
+    addition=0
+    if item_amounts["B"]>=2:
+        #How many times does the special offer fit?
+        offer_amount=(item_amounts["B"]-item_amounts["B"]%2)/2
+        #Remove this many items from the item amounts, and add
+        #sum to basket:
+        addition+=offer_amount*45
+        item_amounts["B"]=item_amounts["B"]-offer_amount*2
+    return addition
+
+
 
 def checkout(skus):
     #First, we sum all possible amounts of items. Then, if
@@ -50,38 +73,18 @@ def checkout(skus):
     #Add their prices into the basket.
     #If we find an item that is not in basket, return -1
 
-    #Now all the basic cases are there.
-    #In order to utilize the  special offers, we collect amounts of items to another map
-
-
+    #Keep running tests after every change when reformatting
 
     item_amounts=collateItemAmounts(skus,single_items)
     basket=0
     #First, we try to fit the special offers in:
     #If the amount of items is geq 3, recude
-
     if "A" in item_amounts:
-        if item_amounts["A"]>=3:
-            #How many times does the special offer fit?
-            offer_amount=(item_amounts["A"]-item_amounts["A"]%3)/3
-            #Remove this many items from the item amounts, and add
-            #sum to basket:
-            basket+=offer_amount*130
-            item_amounts["A"]=item_amounts["A"]-offer_amount*3
-
     #Same with the other one:
     if "B" in item_amounts:
-        if item_amounts["B"]>=2:
-            #How many times does the special offer fit?
-            offer_amount=(item_amounts["B"]-item_amounts["B"]%2)/2
-            #Remove this many items from the item amounts, and add
-            #sum to basket:
-            basket+=offer_amount*45
-            item_amounts["B"]=item_amounts["B"]-offer_amount*2
-
+        basket+=applySpecialOfferA(item_amounts)
 
     #rest of the items:
-    print(item_amounts)
     for key in item_amounts.keys():
         if item_amounts[key]>=0:  
             basket+=single_items[key]*item_amounts[key]
@@ -105,10 +108,3 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
-
-
-
-
-
-
-
