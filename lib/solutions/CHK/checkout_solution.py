@@ -2,6 +2,8 @@
 
 # noinspection PyUnusedLocal
 # skus = unicode string
+
+
 def checkout(skus):
     #First, we sum all possible amounts of items. Then, if
     #A special offer for an item exists, we try to fit that first. If not, then go with the normal price table
@@ -32,6 +34,9 @@ def checkout(skus):
 
     #Now all the basic cases are there.
     #In order to utilize the  special offers, we collect amounts of items to another map
+
+
+
     item_amounts={}
 
     for item in skus:
@@ -95,6 +100,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
