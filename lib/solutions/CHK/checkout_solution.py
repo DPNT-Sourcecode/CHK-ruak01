@@ -64,6 +64,40 @@ def applySpecialOfferB(item_amounts):
         item_amounts["B"] = item_amounts["B"] - offer_amount * 2
     return addition
 
+def applySpecialOfferK(item_amounts):
+    addition = 0
+    if item_amounts["K"] >= 2:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["K"] - item_amounts["K"] % 2) / 2
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 150
+        item_amounts["K"] = item_amounts["K"] - offer_amount * 2
+    return addition
+
+def applySpecialOfferP(item_amounts):
+    addition = 0
+    if item_amounts["P"] >= 5:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["P"] - item_amounts["P"] % 5) / 5
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 200
+        item_amounts["P"] = item_amounts["P"] - offer_amount * 5
+    return addition
+
+
+def applySpecialOfferQ(item_amounts):
+    addition = 0
+    if item_amounts["Q"] >= 3:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["Q"] - item_amounts["Q"] % 3) / 3
+        # Remove this many items from the item amounts, and add
+        # sum to basket:
+        addition += offer_amount * 80
+        item_amounts["Q"] = item_amounts["Q"] - offer_amount * 3
+    return addition
+
 #Offer giving free other items. These go first, in order.
 def applySpecialOfferE(item_amounts):
     # How this will work is that
@@ -192,9 +226,16 @@ def checkout(skus):
     if "U" in item_amounts:
         basket += applySpecialOfferU(item_amounts)
 
+
     # Multiprice
     if "A" in item_amounts:
         basket += applySpecialOfferA(item_amounts)
+    if "K" in item_amounts:
+        basket += applySpecialOfferK(item_amounts)
+    if "P" in item_amounts:
+        basket += applySpecialOfferP(item_amounts)
+    if "Q" in item_amounts:
+        basket += applySpecialOfferQ(item_amounts)
 
 
     # Simple bulk
@@ -219,8 +260,3 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
-
-
-
-
-
