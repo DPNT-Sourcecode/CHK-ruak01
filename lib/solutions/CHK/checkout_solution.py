@@ -69,10 +69,10 @@ def checkout(skus):
 
 
     #rest of the items:
-    for item in item_amounts.keys():
-        print(item)    
-        #basket+=single_items[item]
-    #print(item_amounts)
+    print(item_amounts)
+    for key in item_amounts.keys():
+        if item_amounts[key]>=0:  
+            basket+=single_items[key]*item_amounts[key]
 
 
 
@@ -93,4 +93,5 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
