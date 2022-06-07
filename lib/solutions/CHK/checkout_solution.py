@@ -33,7 +33,7 @@ def checkout(skus):
     item_amounts={}
 
     if not skus:
-        return -1
+        return 0
     for item in skus:
         #Not in the basket
         if not item in single_items:
@@ -95,6 +95,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
