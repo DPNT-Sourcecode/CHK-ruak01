@@ -64,7 +64,7 @@ def applySpecialOfferB(item_amounts):
         item_amounts["B"] = item_amounts["B"] - offer_amount * 2
     return addition
 
-
+#Offer giving free other items. These go first, in order.
 def applySpecialOfferE(item_amounts):
     # How this will work is that
     # For each pair of E's, we can remove one B, as long as there are B's to remove
@@ -78,6 +78,7 @@ def applySpecialOfferE(item_amounts):
             item_amounts["B"] = 0
     return 0
 
+#Offer giving free items if we already have enough
 def applySpecialOfferF(item_amounts):
     offer_amount=0
     #For each triplet of F's, remove three and ad 2Xfprice to basket
@@ -105,25 +106,9 @@ def checkout(skus):
 
 #Writing tests fof all these cases is going to be difficult
 #Have to trust our old tests are good enough for now.
-"""
-| H    | 10    | 5H for 45, 10H for 80  |
-| K    | 80    | 2K for 150             |
-| N    | 40    | 3N get one M free      |
-| P    | 50    | 5P for 200             |
-| Q    | 30    | 3Q for 80              |
-| R    | 50    | 3R get one Q free      |
-| U    | 40    | 3U get one U free      |
-| V    | 50    | 2V for 90, 3V for 130  |
-"""
 
 
-    
-
-
-
-    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10,
-"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,"M":15,"N":40,
-    "O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
+    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10,"G":20,"H":10,"I":35,"J":60,"K":80,"L":90,"M":15,"N":40,"O":10,"P":50,"Q":30,"R":50,"S":30,"T":20,"U":40,"V":50,"W":20,"X":90,"Y":10,"Z":50}
 
     # We do all non-special offer tests first.
     # Testing works now. Now to start with the first cases: iterate all the items, and
@@ -132,15 +117,28 @@ def checkout(skus):
 
     # Keep running tests after every change when reformatting
 
+
+
+    """
+    | H    | 10    | 5H for 45, 10H for 80  |
+    | K    | 80    | 2K for 150             |
+    | N    | 40    | 3N get one M free      |
+    | P    | 50    | 5P for 200             |
+    | Q    | 30    | 3Q for 80              |
+    | R    | 50    | 3R get one Q free      |
+    | U    | 40    | 3U get one U free      |
+    | V    | 50    | 2V for 90, 3V for 130  |
+    """
+
     item_amounts = collateItemAmounts(skus, single_items)
     basket = 0
     # First, we try to fit the special offers in:
+    if "E" in item_amounts:
+        basket += applySpecialOfferE(item_amounts)
 
     if "F" in item_amounts:
         basket += applySpecialOfferF(item_amounts)
 
-    if "E" in item_amounts:
-        basket += applySpecialOfferE(item_amounts)
     # If the amount of items is geq 3, recude
     if "A" in item_amounts:
         basket += applySpecialOfferA(item_amounts)
@@ -166,5 +164,6 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
