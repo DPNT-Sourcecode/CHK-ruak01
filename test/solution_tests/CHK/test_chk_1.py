@@ -114,7 +114,12 @@ class TestCHK(unittest.TestCase):
         assert checkout_solution.checkout("FFFEEBABB")==195
 
         
+    """Basic group offer
+    """
+    def test_basic_group_offer(self):
+        #Z>TSY>X
+        assert checkout_solution.checkout("TSY")==45
+
 
         
-
 

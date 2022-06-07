@@ -278,6 +278,25 @@ def groupOffer(item_amounts):
     #We want to offer the most expensive items for free
     #Z>TSY>X
     #First, use all Z's, then use all T's/S's/Y's, doesnt matter. Then use all X's
+    addition=0
+    groupitems=item_amounts["T"]+item_amounts["S"]+item_amounts["X"]+item_amounts["Y"]+item_amounts["Z"]
+    while groupitems>=3:
+        #Need to use group offer:
+        to_remove=3
+        while to_remove>0:
+            if item_amounts["Z"]>0:
+                item_amounts["Z"]=item_amounts["Z"]-1
+            elif item_amounts["T"]>0:
+                item_amounts["T"]=item_amounts["T"]-1
+            elif item_amounts["S"]>0:
+                item_amounts["S"]=item_amounts["S"]-1
+            elif item_amounts["Y"]>0:
+                item_amounts["Y"]=item_amounts["Y"]-1
+            elif item_amounts["X"]>0:
+                item_amounts["X"]=item_amounts["X"]-1
+        addition+=45
+    remove addition
+            
 
 
 
@@ -382,9 +401,3 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
-
-
-
-
-
-
