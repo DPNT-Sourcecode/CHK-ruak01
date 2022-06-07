@@ -13,6 +13,19 @@ def checkout(skus):
     #an individual item: for instance, "AABBCC"
 
 
+    #Formulate a hashmap for single items, and another for special offers
+    single_items={"A":50,"B":30,"C":20,"D":15}
+
+    #First, check if skus only includes uppercase letters
+    if not all(skus.isupper()):
+        return -1
+
+    #We do all non-special offer tests first:
+    basket=0
+    for item in skus:
+        print(item)
+
+
     
 
 """
@@ -25,7 +38,3 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
-
-
-
-
