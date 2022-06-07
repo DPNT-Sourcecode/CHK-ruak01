@@ -6,11 +6,12 @@ def checkout(skus):
     #First, we sum all possible amounts of items. Then, if
     #A special offer for an item exists, we try to fit that first. If not, then go with the normal price table
     #Writing tests to test_sum.py in order to stay on top of things
+    #Write tests first, and adapt a TDD-approach
 
 
     #Assume that each basket is a string of characters, each 
     #an individual item: for instance, "AABBCC"
-    
+
 
 +------+-------+----------------+
 | Item | Price | Special offers |
@@ -24,5 +25,6 @@ def checkout(skus):
 
 
     priceTable={"A",}
+
 
 
