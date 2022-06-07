@@ -294,8 +294,10 @@ def groupOffer(item_amounts):
                 item_amounts["Y"]=item_amounts["Y"]-1
             elif item_amounts["X"]>0:
                 item_amounts["X"]=item_amounts["X"]-1
+            to_remove-=1
         addition+=45
-    remove addition
+        groupitems-=3
+    return addition
             
 
 
@@ -346,6 +348,19 @@ def checkout(skus):
     # U is archetype F, V is archetype A
 
     if "S" or "T" or "X" or "Y" or "Z" in item_amounts:
+        if "S" not in item_amounts:
+            item_amounts["S"]=0
+        if "T" not in item_amounts:
+            item_amounts["T"]=0
+        if "X" not in item_amounts:
+            item_amounts["X"]=0
+        if "Y" not in item_amounts:
+            item_amounts["Y"]=0
+        if "Z" not in item_amounts:
+            item_amounts["Z"]=0
+
+
+            
         basket+=groupOffer(item_amounts)
 
     if "N" in item_amounts:
@@ -401,3 +416,4 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
