@@ -85,7 +85,7 @@ def checkout(skus):
     # an individual item: for instance, "AABBCC"
 
     # Formulate a hashmap for single items, and another for special offers
-    single_items = {"A": 50, "B": 30, "C": 20, "D": 15}
+    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E":40}
 
     # We do all non-special offer tests first.
     # Testing works now. Now to start with the first cases: iterate all the items, and
