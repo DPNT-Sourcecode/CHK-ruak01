@@ -68,10 +68,11 @@ def applySpecialOfferE(item_amounts):
     if item_amounts["E"] >= 2:
         # How many times does the special offer fit?
         offer_amount = (item_amounts["E"] - item_amounts["E"] % 2) / 2
-        item_amounts["B"] = item_amounts["B"] - offer_amount
-    
-    if item_amounts["B"]<0:
-        item_amounts["B"]=0
+        if "B" in item_amounts:
+            item_amounts["B"] = item_amounts["B"] - offer_amount
+    if "B" in item_amounts:
+        if item_amounts["B"] < 0:
+            item_amounts["B"] = 0
     return 0
 
 
@@ -85,7 +86,7 @@ def checkout(skus):
     # an individual item: for instance, "AABBCC"
 
     # Formulate a hashmap for single items, and another for special offers
-    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E":40}
+    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
 
     # We do all non-special offer tests first.
     # Testing works now. Now to start with the first cases: iterate all the items, and
@@ -124,5 +125,6 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
