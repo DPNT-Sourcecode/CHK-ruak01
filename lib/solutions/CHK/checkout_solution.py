@@ -26,15 +26,31 @@ def checkout(skus):
     #Add their prices into the basket.
     #If we find an item that is not in basket, return -1
 
+
+
+    #Now all the basic cases are there.
+    #In order to utilize the  special offers, we collect amounts of items to another map
+    item_amounts={}
+
     basket=0
     for item in skus:
         #Not in the basket
         if not item in single_items:
             return -1
-        print(item)
-        basket+=single_items[item]
 
-    return basket
+        #Add item to the item amounts, or increment
+        if item in item_amounts:
+            item_amounts[item]=item_amounts[item]+1
+        else:
+            item_amounts[item]=1
+
+        #basket+=single_items[item]
+    #print(item_amounts)
+
+    #First, we try to fit the special offers in:
+    
+
+    #return basket
 
 
     
@@ -49,5 +65,6 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
