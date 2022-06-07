@@ -80,6 +80,3 @@ class TestCHK(unittest.TestCase):
     """
     def test_free_item_in_basket_other_offers(self):
         assert checkout_solution.checkout("EEBABB")==175
-
-
-

@@ -77,6 +77,18 @@ def applySpecialOfferE(item_amounts):
             item_amounts["B"] = 0
     return 0
 
+def applySpecialOfferF(item_amounts):
+    #For each triplet of F's, remove three and ad 2Xfprice to basket
+    if item_amounts["F"] >= 3:
+        # How many times does the special offer fit?
+        offer_amount = (item_amounts["E"] - item_amounts["E"] % 2) / 2
+        if "B" in item_amounts:
+            item_amounts["B"] = item_amounts["B"] - offer_amount
+    if "B" in item_amounts:
+        if item_amounts["B"] < 0:
+            item_amounts["B"] = 0
+    return 0
+
 
 def checkout(skus):
     # First, we sum all possible amounts of items. Then, if
@@ -91,7 +103,7 @@ def checkout(skus):
     if not sanityCheck(skus)==1:
         return sanityCheck(skus)
     # Formulate a hashmap for single items, and another for special offers
-    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
+    single_items = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10}
 
     # We do all non-special offer tests first.
     # Testing works now. Now to start with the first cases: iterate all the items, and
@@ -103,6 +115,10 @@ def checkout(skus):
     item_amounts = collateItemAmounts(skus, single_items)
     basket = 0
     # First, we try to fit the special offers in:
+
+    if "F" in item_amounts:
+        basket += applySpecialOfferF(item_amounts)
+
     if "E" in item_amounts:
         basket += applySpecialOfferE(item_amounts)
     # If the amount of items is geq 3, recude
@@ -130,8 +146,3 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
-
-
-
-
-
