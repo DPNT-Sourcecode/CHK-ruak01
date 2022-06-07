@@ -274,6 +274,10 @@ def applySpecialOfferU(item_amounts):
         item_amounts["U"]=item_amounts["U"]-4*offer_amount
     return 120*offer_amount
 
+def groupOffer(item_amounts):
+    #We want to offer the most expensive items for free
+    #Z>TSY>X
+
 def checkout(skus):
     # First, we sum all possible amounts of items. Then, if
     # A special offer for an item exists, we try to fit that first. If not, then go with the normal price table
@@ -318,6 +322,9 @@ def checkout(skus):
     # P is archetype B,
     # Q is archetype B,
     # U is archetype F, V is archetype A
+
+    if "S" or "T" or "X" or "Y" or "Z" in item_amounts:
+        basket+=groupOffer(item_amounts)
 
     if "N" in item_amounts:
         basket += applySpecialOfferN(item_amounts)
@@ -372,6 +379,7 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 
 
 
