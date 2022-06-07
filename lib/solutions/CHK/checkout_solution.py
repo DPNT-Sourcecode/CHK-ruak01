@@ -32,7 +32,6 @@ def checkout(skus):
     #In order to utilize the  special offers, we collect amounts of items to another map
     item_amounts={}
 
-    basket=0
     for item in skus:
         #Not in the basket
         if not item in single_items:
@@ -44,13 +43,42 @@ def checkout(skus):
         else:
             item_amounts[item]=1
 
+
+    basket=0
+    #First, we try to fit the special offers in:
+    #If the amount of items is geq 3, recude
+
+    if "A" in item_amounts:
+        if item_amounts["A"]>=3:
+            #How many times does the special offer fit?
+            offer_amount=(item_amounts["A"]-item_amounts["A"]%3)/3
+            #Remove this many items from the item amounts, and add
+            #sum to basket:
+            basket+=offer_amount*130
+            item_amounts["A"]=item_amounts["A"]-offer_amount*3
+
+    #Same with the other one:
+    if "B" in item_amounts:
+        if item_amounts["B"]>=2:
+            #How many times does the special offer fit?
+            offer_amount=(item_amounts["B"]-item_amounts["B"]%2)/2
+            #Remove this many items from the item amounts, and add
+            #sum to basket:
+            basket+=offer_amount*45
+            item_amounts["B"]=item_amounts["B"]-offer_amount*2
+
+
+    #rest of the items:
+    for item in item_amounts.keys():
+        print(item)    
         #basket+=single_items[item]
     #print(item_amounts)
 
-    #First, we try to fit the special offers in:
-    
 
-    #return basket
+
+
+
+    return basket
 
 
     
@@ -65,3 +93,4 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
