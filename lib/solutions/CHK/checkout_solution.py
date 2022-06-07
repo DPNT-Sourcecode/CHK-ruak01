@@ -13,6 +13,9 @@ def checkout(skus):
     #an individual item: for instance, "AABBCC"
 
 
+    
+
+"""
 +------+-------+----------------+
 | Item | Price | Special offers |
 +------+-------+----------------+
@@ -21,10 +24,8 @@ def checkout(skus):
 | C    | 20    |                |
 | D    | 15    |                |
 +------+-------+----------------+
+"""
 
-
-
-    priceTable={"A",}
 
 
 
