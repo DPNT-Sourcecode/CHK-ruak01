@@ -32,6 +32,15 @@ def collateItemAmounts(skus, single_items):
 
 def applySpecialOfferA(item_amounts):
     addition=0
+    if item_amounts["A"]>=5:
+        #How many times does the special offer fit?
+        offer_amount=(item_amounts["A"]-item_amounts["A"]%5)/5
+        #Remove this many items from the item amounts, and add
+        #sum to basket:
+        addition+=offer_amount*200
+        item_amounts["A"]=item_amounts["A"]-offer_amount*5
+
+
     if item_amounts["A"]>=3:
         #How many times does the special offer fit?
         offer_amount=(item_amounts["A"]-item_amounts["A"]%3)/3
@@ -80,9 +89,10 @@ def checkout(skus):
     #First, we try to fit the special offers in:
     #If the amount of items is geq 3, recude
     if "A" in item_amounts:
+        basket+=applySpecialOfferA(item_amounts)
     #Same with the other one:
     if "B" in item_amounts:
-        basket+=applySpecialOfferA(item_amounts)
+        basket+=applySpecialOfferB(item_amounts)
 
     #rest of the items:
     for key in item_amounts.keys():
@@ -108,3 +118,4 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+

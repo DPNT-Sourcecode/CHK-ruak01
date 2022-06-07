@@ -32,13 +32,14 @@ class TestCHK(unittest.TestCase):
 
     """Test a case with multiple special offers and nothing else
     """
-    def test_chk1_special_two_offers(self):
-        assert checkout_solution.checkout("AAAAAA")==260
+    def test_chk1_special_two_offers_multiprice(self):
+        assert checkout_solution.checkout("AAAAAAAA")==330
 
     """Test a mixed basket with special offers and single items
     """
     def test_chk1_special_mixed(self):
         assert checkout_solution.checkout("AAABBABCD")==290
+
 
 
 
