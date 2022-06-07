@@ -322,7 +322,7 @@ def checkout(skus):
     if "N" in item_amounts:
         basket += applySpecialOfferN(item_amounts)
     if "R" in item_amounts:
-        basket += applySpecialOfferN(item_amounts)
+        basket += applySpecialOfferR(item_amounts)
     if "E" in item_amounts:
         basket += applySpecialOfferE(item_amounts)
 
@@ -372,4 +372,5 @@ def checkout(skus):
 | D    | 15    |                |
 +------+-------+----------------+
 """
+
 

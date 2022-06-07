@@ -26,6 +26,13 @@ class TestCHK(unittest.TestCase):
     def test_chk1_single(self):
         assert checkout_solution.checkout("A") == 50
 
+    """Test single item, no special offers"""
+
+    def test_chk1_single(self):
+        assert checkout_solution.checkout("R") == 50
+
+
+
     """Test multiple of the same item without special offers
     """
 
@@ -109,4 +116,5 @@ class TestCHK(unittest.TestCase):
         
 
         
+
 
